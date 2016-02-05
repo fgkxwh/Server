@@ -12,3 +12,7 @@ spring hibernate mina
 
 #使用方式在
 在eclipse下打开项目，确保安装了jdk1.7
+
+
+#说明
+欢迎大家clone 并且  commit  我会及时 pull 的
