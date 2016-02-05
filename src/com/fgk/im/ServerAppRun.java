@@ -15,7 +15,6 @@ public class ServerAppRun {
 		AppCache.context = context;
 		
 		LOGGER.info("ServerApp Start Success");
-		System.out.println("git ok");
 	}
 
 }
