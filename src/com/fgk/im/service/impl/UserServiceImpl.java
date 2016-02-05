@@ -13,6 +13,11 @@ public class UserServiceImpl  implements IUserService{
 	@Override
 	public void login(ArrayList<Object> params){
 		
+		String strUsername = params.get(0).toString();//用户名
+		String strPassword = params.get(1).toString();//密码
+		
+		
+		
 		System.out.println("UserService.login");
 		for (Object object : params) {
 			System.out.println(object);
