@@ -17,5 +17,3 @@ spring hibernate mina
 #说明
 欢迎大家clone 并且  commit  我会及时 pull
 
-#test
-abc
