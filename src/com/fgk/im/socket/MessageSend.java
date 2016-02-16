@@ -1,6 +1,10 @@
 package com.fgk.im.socket;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fgk.im.bean.Data;
+import com.google.gson.Gson;
 
 /**
  * 信息发送
@@ -9,16 +13,22 @@ import com.fgk.im.bean.Data;
  */
 public class MessageSend {
 	
-	public static void send(Data data){
+	public static void send(String uri,Object...params){
 		
-		if (SocketHandle.session != null) {
+		List<Object> temParams = new ArrayList<Object>();
+		for (int i = 0; i < params.length; i++) {
+			temParams.add(params[i]);
+		}
+
+		Data data = new Data("UserService/login",temParams);
+		if (SocketHandler.session != null) {
 			
-			SocketHandle.session.write(data);
+			SocketHandler.session.write(data);
 		}else {
 			
 			System.out.println(" MessageSend.send:"+"发送时session为空，数据发送失败");
 		}
-	    
+		
 	}
 
 }
