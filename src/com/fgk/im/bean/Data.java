@@ -1,6 +1,7 @@
 package com.fgk.im.bean;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 import com.fgk.im.dao.IUserDao;
@@ -10,10 +11,10 @@ public class Data  implements Serializable{
 	private static final long serialVersionUID = -8377743708414236875L;
 	
 	private String uri;
-	private List<Object> params;
+	private HashMap<String, Object>  params;
 
 	public Data() {}
-	public Data(String uri, List<Object> params) {
+	public Data(String uri, HashMap<String, Object> params) {
 		this.uri = uri;
 		this.params = params;
 	}
@@ -25,10 +26,10 @@ public class Data  implements Serializable{
 		this.uri = uri;
 	}
 	
-	public List<Object> getParams() {
+	public HashMap<String, Object> getParams() {
 		return params;
 	}
-	public void setParams(List<Object> params) {
+	public void setParams(HashMap<String, Object> params) {
 		this.params = params;
 	}
 

@@ -27,13 +27,13 @@ public class SocketHandler implements IoHandler{
 	@Override
 	public void exceptionCaught(IoSession session, Throwable e) throws Exception {
 
-		System.out.println(" exceptionCaught:" + e.getMessage());
+		System.out.println("Server exceptionCaught:" + e.getMessage());
 	}
 
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		
-		System.out.println("messageReceived:"+ session + "  :"+message);
+		System.out.println("Server messageReceived:"+ session + "  :"+message);
 		
 		if (message instanceof Data) {
 			
@@ -43,7 +43,7 @@ public class SocketHandler implements IoHandler{
 		     String[] arrUri = uri.split("/");//以/分割开 类名和 方法名
 		     String strClass = arrUri[0];//类名
 		     String strMethod = arrUri[1];//方法名
-		     List<Object> params = data.getParams();//参数列表
+		     HashMap<String, Object> params = data.getParams();//参数
 		     
 //		     params.add(session);//在参数列表后 加上session
 
@@ -80,30 +80,30 @@ public class SocketHandler implements IoHandler{
 
 	@Override
 	public void messageSent(IoSession session, Object object) throws Exception {
-		System.out.println("messageSent:"+ session + "  :"+object);
+		System.out.println("Server messageSent:"+ session + "  :"+object);
 	}
 
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		System.out.println("sessionClosed:"+ session );
+		System.out.println("Server sessionClosed:"+ session );
 	}
 
 	@Override
 	public void sessionCreated(IoSession session) throws Exception {
 		
-		System.out.println("sessionCreated:"+ session );
+		System.out.println("Server sessionCreated:"+ session );
 	}
 
 	@Override
 	public void sessionIdle(IoSession session, IdleStatus idleStatus) throws Exception {
 
-		System.out.println("sessionIdle:"+ session +"  , " +idleStatus.toString());
+		System.out.println("Server sessionIdle:"+ session +"  , " +idleStatus.toString());
 	}
 
 	@Override
 	public void sessionOpened(IoSession session) throws Exception {
 		
-		System.out.println("sessionOpened:"+ session );
+		System.out.println("Server sessionOpened:"+ session );
 		this.session = session;
 		
 //		MessageSend.send(new Data("UserService/login",new ArrayList<Object>()));

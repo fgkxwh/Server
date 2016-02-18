@@ -1,6 +1,7 @@
 package com.fgk.im.socket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.fgk.im.bean.Data;
@@ -13,14 +14,14 @@ import com.google.gson.Gson;
  */
 public class MessageSend {
 	
-	public static void send(String uri,Object...params){
+	public static void send(String uri,HashMap<String, Object> params){
 		
-		List<Object> temParams = new ArrayList<Object>();
-		for (int i = 0; i < params.length; i++) {
-			temParams.add(params[i]);
-		}
+//		List<Object> temParams = new ArrayList<Object>();
+//		for (int i = 0; i < params.length; i++) {
+//			temParams.add(params[i]);
+//		}
 
-		Data data = new Data("UserService/login",temParams);
+		Data data = new Data(uri,params);
 		if (SocketHandler.session != null) {
 			
 			SocketHandler.session.write(data);

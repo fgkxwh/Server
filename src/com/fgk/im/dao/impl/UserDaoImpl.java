@@ -23,7 +23,6 @@ public class UserDaoImpl extends BaseDao<User,Integer> implements IUserDao {
 				System.out.println("用户密码错误");
 				return false;
 			}
-			
 		}else {
 			
 			System.out.println("用户名不存在");
@@ -38,7 +37,7 @@ public class UserDaoImpl extends BaseDao<User,Integer> implements IUserDao {
 	 */
 	private boolean _existUsername(User user){
 		
-		Object result =  createQuery("From User u Where u.username = ?",user.getUsername()).uniqueResult();
+		Object result  = queryListByHql("From User Where username = ?",user.getUsername());
 		
 		if (result == null) {
 			
@@ -71,8 +70,13 @@ public class UserDaoImpl extends BaseDao<User,Integer> implements IUserDao {
 	@Override
 	public boolean register(User user) {
 		
-		super.add(user);
-		return false;
+		int count = 0;
+		count = add(user);
+		if (count >0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 
