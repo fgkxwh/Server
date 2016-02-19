@@ -11,6 +11,8 @@ import com.fgk.im.dao.IUserDao;
 import com.fgk.im.entity.User;
 import com.fgk.im.service.IUserService;
 import com.fgk.im.socket.MessageSend;
+import com.fgk.im.socket.SocketHandler;
+import com.fgk.im.util.AppCache;
 
 @Service("userService")
 public class UserServiceImpl  implements IUserService{
@@ -28,13 +30,19 @@ public class UserServiceImpl  implements IUserService{
 		
 		User user = new User(strUsername,strPassword);
 		
-		System.out.println("server:"+user);
-		
 		boolean flag = userDao.canLogin(user);
 		result = _getHMInstance();
 		result.put("success", flag);
-		System.out.println("server:"+result);
+		result.put("username",strUsername);
 		MessageSend.send("userAction/login",result);
+		
+		if (flag) {
+			
+			//保存登录的用户的session
+			AppCache.usernameIosessionMap.put(strUsername,SocketHandler.session);
+		}
+		
+		
 		System.out.println("userAction/login");
 	}
 
