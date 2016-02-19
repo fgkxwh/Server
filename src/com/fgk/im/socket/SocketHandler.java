@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.cxf.transport.Session;
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -22,7 +23,12 @@ import sun.print.resources.serviceui;
 @Service("socketHandler")
 public class SocketHandler implements IoHandler{
 
+	//当前最新连接的用户的session
 	public static IoSession session;
+	
+	
+	//在线的用户名和用户的session映射表
+	public static HashMap<String,IoSession> usernameSessionMap = new HashMap<String, IoSession>();
 	
 	@Override
 	public void exceptionCaught(IoSession session, Throwable e) throws Exception {
@@ -105,6 +111,8 @@ public class SocketHandler implements IoHandler{
 		
 		System.out.println("Server sessionOpened:"+ session );
 		this.session = session;
+		
+		
 		
 //		MessageSend.send(new Data("UserService/login",new ArrayList<Object>()));
 	}
